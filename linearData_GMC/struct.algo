@@ -1,38 +1,54 @@
 ALGORITHM linear_data_struct
 VAR
-e1 : INTEGER ; 
-e2 : INTEGER ;
-sum := 0 ; à
-distincts : INTEGER ; 
-table ensemble_1 [] of INTEGER ; 
-table ensemble_2 [] of INTEGER ; 
-
+    sum , n , i,j : INTEGER ; 
+    set_1 ,  set_2 : array_name : ARRAY_OF INTEGER[n]; 
+    test : BOOLEAN ; 
 
 BEGIN
-//  ........... saisir la longeur des deux tableau    
-    REPEAT
-        write ("donner un nombre  ") ; 
-        read(e1) ; 
-        write ("donner un nombre ") ; 
-        read(e2) ; 
-    UNTIL (UNTIL e1 == 10 && e2 == 10  ) ; 
-
-// .............traitement de la sommme et les elements distincts
-     VAR j:= ensemble_1[0] ; 
-     i:= ensemble_1[0] ; 
      
-     WHILE ( ensemble_1[i] <> j  ) DO
-          sum := sum + ensemble_1[i] ;
-          j:= j+1;
-          i:= i+1;
-     END_WHILE 
+// we are going to read the length of table 
 
-    for(i=0 ; i<=ensemble_1.length ; i++ ) 
-    {
-        if (ensemble_1[i] == j) 
-        {
-            distincts := ensemble_1[i] ; 
-            j:= j+1 ; 
+REPEAT
+    write ("enter the length of the table");
+    read(n);
+UNTIL (n > 0) ; 
+
+//  solution 1 problème 1
+
+FOR i FROM 0 TO (n- 1)  STEP 1  DO
+    read(set_1[i]) ;
+    read(set_2[i]);
+END_FOR
+
+sum := 0 ;
+ FOR i FROM 0 TO (n-1) STEP 1  DO
+test = false ; 
+     while(set_1[i] <> set_2[j]) do 
+         test = true ;
+        sum = sum + set_1[i] ; 
+    END_FOR
+     IF (test == false) THEN
+         j = j+1 ; 
+     END_IF
+END_FOR
+
+
+//   problème 2 
+
+     FOR i FROM 0 TO (n-1) STEP 1  DO
+      j:= 0 ; 
+            WHILE ( set_2[i] <> set_1[j] or j == n  ) DO   
+ 
+      j:= j+1 ; 
+
+                     END_WHILE
+        IF (j == n ) THEN
+            sum = sum + set_2[i] ; 
+        END_IF
+
+     END_FOR
+END
+
         }
     }
 
